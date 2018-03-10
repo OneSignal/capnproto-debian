@@ -10,6 +10,7 @@ env:
     - TRAVIS_DEBIAN_LINTIAN=false
     - TRAVIS_DEBIAN_BACKPORTS=xenial-security
     - TRAVIS_DEBIAN_SECURITY_UPDATES=true
+    - TRAVIS_DEBIAN_EXTRA_REPOSITORY_GPG_URL="https://raw.githubusercontent.com/OneSignal/capnproto-debian/master/ubuntu-toolchain-r.pub"
   matrix:
     - TRAVIS_DEBIAN_DERIVATIVE=ubuntu TRAVIS_DEBIAN_DISTRIBUTION=xenial
 
