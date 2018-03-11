@@ -11,6 +11,7 @@ env:
     - TRAVIS_DEBIAN_BACKPORTS=xenial-security
     - TRAVIS_DEBIAN_SECURITY_UPDATES=true
     - TRAVIS_DEBIAN_EXTRA_REPOSITORY_GPG_URL="https://raw.githubusercontent.com/OneSignal/capnproto-debian/master/ubuntu-toolchain-r.pub"
+    - TRAVIS_DEBIAN_TARGET_DIR=$TRAVIS_BUILD_DIR
   matrix:
     - TRAVIS_DEBIAN_DERIVATIVE=ubuntu TRAVIS_DEBIAN_DISTRIBUTION=xenial
 
@@ -18,3 +19,13 @@ env:
 script:
   - wget -O- http://travis.debian.net/script.sh | sh -
 
+deploy:
+  provider: releases
+  api_key:
+    secure: "G8+cwlk04qxxN0YwF6CfCKQSi1lSN1ovHoPm9Vw/PDSZNsuBN6r3gd302skGgf3+9DUZzQGKHCXYjv2BbxJu0BZSV2Ev5BUpXMf4IB4+0CEAyMisBhH6jK81OHpxZ2BBCTwgMLe36LY9PXZZ3oZibYHJWXXSMZEjqPKusu/gVX6mCJoUSg9NcQ2C03jAj3JaLqMHXkJn8MlT07iz8I9cjDhc2j+Iowx3+lTtIaWfpRbkvF5FBrzwDdgsxRHsy+mcf4BAkmnDoDUQvUFtJBLq4ovS/xd77zY+lIhqaaXPIR3IQl91Or2KHwWyKek4CTar/xsTbhgckI+FTb/+W02QeV+xeHT+fCuaqygLJCBgI2SbmiqxHIt08OrTkTbEhETzszqrzQ8Z12jb96URq7lV3vIt+2owb13rDUZv+/QiQb6b217eb4z97bUmXfyj1iqyVrYjs0vCrmCRPEqS/xKR6/Le+mD/HkkVv2EGeTPtvi4qAbHjp5CJdbGVAR/W9b/iD497c6+dtxdJTpDt2TW+D9j2S4P6gVN3ZDhc0ioCVUj/LTJwGuVlqd+/win+6JiTo5xkRW5GsBB2yBaH6TYEX3wxPqmMbJlwUfG2bZKrVFqLPgwx52l0Nt3fe5RUZ04fS0T4ZHCfCEwxS04OIBz8/wgcGw0vZ8vTKTQz0Iw8CLA="
+  skip_cleanup: true
+  overwrite: true
+  file_glob: true
+  file: *.deb
+  on:
+    tags: true
